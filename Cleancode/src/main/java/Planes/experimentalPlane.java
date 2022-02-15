@@ -1,25 +1,36 @@
-package Planes;
+package planes;
 
-import models.ClassificationLevel;
-import models.ExperimentalTypes;
+import models.AccessType;
+import models.ExperimentalType;
 
-public class experimentalPlane extends Plane{
+import java.util.Objects;
 
-    private ExperimentalTypes type;
-    private ClassificationLevel classificationLevel;
+public class ExperimentalPlane extends Plane {
 
-    public experimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes type, ClassificationLevel classificationLevel) {
+    private final ExperimentalType experimentalType;
+    private final AccessType accessType;
+
+    public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalType experimentalType, AccessType accessType) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
-        this.type = type;
-        this.classificationLevel = classificationLevel;
+        this.experimentalType = experimentalType;
+        this.accessType = accessType;
     }
 
-    public ClassificationLevel getClassificationLevel(){
-        return classificationLevel;
+    public ExperimentalType getExperimentalType() {
+        return experimentalType;
     }
 
-    public void setClassificationLevel(ClassificationLevel classificationLevel){
-        this.classificationLevel = classificationLevel;
+    public AccessType getAccessType() {
+        return accessType;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                .replace("}",
+                        ", experimentalType = " + experimentalType +
+                                ", accessType = " + accessType +
+                                '}');
     }
 
     @Override
@@ -29,13 +40,7 @@ public class experimentalPlane extends Plane{
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(super.hashCode(), experimentalType, accessType);
     }
 
-    @Override
-    public String toString() {
-        return "experimentalPlane{" +
-                "model='" + model + '\'' +
-                '}';
-    }
 }
